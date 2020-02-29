@@ -1,4 +1,5 @@
 import pytest
+from .mocks import *
 
 
 def pytest_addoption(parser):
@@ -47,3 +48,16 @@ def flask_app():
 
     client_test = ClientTest()
     return client_test
+
+
+@pytest.fixture(autouse=True)
+def cleanup():
+    from app.app import todos_list, logs
+
+    keys = list(todos_list.keys())
+    for t in keys:
+        del todos_list[t]
+
+    size = range(len(logs))
+    for i in size:
+        del logs[i]
