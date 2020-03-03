@@ -50,3 +50,7 @@ def remove_todo(title):
     del todos_list[title]
 
     return True
+
+
+def capitalize_title(title: str) -> str:
+    return title.upper()

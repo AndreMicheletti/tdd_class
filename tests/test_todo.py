@@ -6,7 +6,21 @@ def test_hello(flask_app):
     assert response.data == b"hello world"
 
 
+def test_capitalize_title():
+    """ TESTE DE CONTROLLER PURO """
+    from app.controllers import capitalize_title
+
+    res = capitalize_title("andre")
+
+    assert res == "ANDRE"
+
+    res = capitalize_title("pytest is daora")
+
+    assert res == "PYTEST IS DAORA"
+
+
 def test_insert_todo(flask_app):
+    """ TESTE DE API """
     from app.app import todos_list
 
     response = flask_app.post("/todo", json={"title": "tarefa 1"})
