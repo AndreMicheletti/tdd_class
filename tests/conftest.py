@@ -54,10 +54,5 @@ def flask_app():
 def cleanup():
     from app.app import todos_list, logs
 
-    keys = list(todos_list.keys())
-    for t in keys:
-        del todos_list[t]
-
-    size = range(len(logs))
-    for i in size:
-        del logs[i]
+    todos_list.clear()
+    logs.clear()
